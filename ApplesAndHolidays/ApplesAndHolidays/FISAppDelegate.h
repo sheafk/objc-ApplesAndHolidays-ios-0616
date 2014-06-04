@@ -12,7 +12,13 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+
++ (NSMutableArray *)applePickerWithFruits:(NSMutableArray *)fruits;
 + (NSMutableDictionary *)addSupply:(NSString *)supply
             toWinterHoliday:(NSString *)holiday;
++ (NSString *)secondSupplyFourthOfJuly; 
++ (NSMutableDictionary *)holidaySupplies;
++ (NSMutableDictionary *)addSupplyToMemorialDay:(NSString *)supply;
+
 
 @end

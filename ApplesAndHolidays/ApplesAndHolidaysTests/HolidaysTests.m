@@ -3,8 +3,6 @@
 #import "Expecta.h"
 #import "FISAppDelegate.h"
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
 SpecBegin(HolidaysTests)
 
@@ -12,10 +10,11 @@ describe(@"HolidaysSpec", ^{
 
     
     it(@"should have a holidaySupplies class method", ^{
-        expect([FISAppDelegate class]).respondTo(NSSelectorFromString(@"holidaySupplies"));
+        expect([FISAppDelegate class]).respondTo(@selector(holidaySupplies));
     });
     it(@"should return a mutable dictionary from the holidaySupplies class method", ^{
-        NSMutableDictionary *holidaySupplies = [[FISAppDelegate class] performSelector:NSSelectorFromString(@"holidaySupplies")];
+
+        NSMutableDictionary *holidaySupplies = [FISAppDelegate holidaySupplies];
         expect(holidaySupplies).to.beKindOf([NSMutableDictionary class]);
         
         //Winter
@@ -61,18 +60,19 @@ describe(@"HolidaysSpec", ^{
     
     it(@"should have a class method that returns the second supply on the fourth of July as a string", ^{
         
-        expect([FISAppDelegate class]).to.respondTo(NSSelectorFromString(@"secondSupplyFourthOfJuly"));
+        expect([FISAppDelegate class]).to.respondTo(@selector(secondSupplyFourthOfJuly));
         
-        NSString *secondSupply = [[FISAppDelegate class] performSelector:(NSSelectorFromString(@"secondSupplyFourthOfJuly"))];
+        NSString *secondSupply = [FISAppDelegate secondSupplyFourthOfJuly];
+        
         expect(secondSupply).to.beKindOf([NSString class]);
         expect(secondSupply).to.equal(@"BBQ");
     });
     
     it(@"should have a class method that returns a copy of the holiday supplies mutable dictionary with an additional supply added to memorial day", ^{
         
-        expect([FISAppDelegate class]).to.respondTo(NSSelectorFromString(@"addSupplyToMemorialDay:"));
+        expect([FISAppDelegate class]).to.respondTo(@selector(addSupplyToMemorialDay:));
         
-        NSMutableDictionary *modifiedHolidaySupplies = [[FISAppDelegate class] performSelector:NSSelectorFromString(@"addSupplyToMemorialDay:") withObject:@"Pool"];
+        NSMutableDictionary *modifiedHolidaySupplies = [FISAppDelegate addSupplyToMemorialDay:@"Pool"];
      
         expect(modifiedHolidaySupplies).to.beKindOf([NSMutableDictionary class]);
         expect([modifiedHolidaySupplies[@"spring"][@"memorialDay"] count]).to.equal(2);
@@ -81,21 +81,20 @@ describe(@"HolidaysSpec", ^{
     
     it (@"should have a class method that adds a supply to a given winter holiday. If the holiday passed in doesn't exist the meethod should return the original Dictionary", ^{
         
-        expect([FISAppDelegate class]).to.respondTo(NSSelectorFromString(@"addSupply:toWinterHoliday:"));
+        expect([FISAppDelegate class]).to.respondTo(@selector(addSupply:toWinterHoliday:));
         
-        NSMutableDictionary *modifiedHolidaySupplies = [[FISAppDelegate class] addSupply:@"Tree" toWinterHoliday:@"christmas"];
-        NSMutableDictionary *invalidHolidaySupplies = [[FISAppDelegate class] addSupply:@"Chair" toWinterHoliday:@"fourthOfJuly"];
+        NSMutableDictionary *modifiedHolidaySupplies = [FISAppDelegate addSupply:@"Tree" toWinterHoliday:@"christmas"];
+        NSMutableDictionary *invalidHolidaySupplies = [FISAppDelegate addSupply:@"Chair" toWinterHoliday:@"fourthOfJuly"];
         
         expect(modifiedHolidaySupplies).to.beKindOf([NSMutableDictionary class]);
         expect(modifiedHolidaySupplies[@"winter"][@"christmas"][2]).to.equal(@"Tree");
         
-        expect(invalidHolidaySupplies).to.equal([[FISAppDelegate class] performSelector:NSSelectorFromString(@"holidaySupplies")]);
+        expect(invalidHolidaySupplies).to.equal([FISAppDelegate holidaySupplies]);
 
     });
 
 });
 
-#pragma clang diagnostic pop
 
 SpecEnd
 
