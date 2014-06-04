@@ -20,6 +20,23 @@
     return YES;
 }
 
++ (NSMutableDictionary *)holidaySupplies
+{
+    
+    NSMutableDictionary *winter = [NSMutableDictionary dictionaryWithDictionary:@{@"christmas" : [NSMutableArray arrayWithArray:@[@"Lights", @"Wreath"]], @"newYears" : [NSMutableArray arrayWithArray:@[@"Party Hats"]]}];
+    
+    NSMutableDictionary *summer = [NSMutableDictionary dictionaryWithDictionary:@{@"fourthOfJuly" : [NSMutableArray arrayWithArray:@[@"Fireworks", @"BBQ"]]}];
+    
+    NSMutableDictionary *fall = [NSMutableDictionary dictionaryWithDictionary:@{@"thanksgiving" : [NSMutableArray arrayWithArray:@[@"Turkey"]]}];
+    
+    NSMutableDictionary *spring = [NSMutableDictionary dictionaryWithDictionary:@{@"memorialDay" : [NSMutableArray arrayWithArray:@[@"BBQ"]]}];
+    
+    return [NSMutableDictionary dictionaryWithDictionary:
+            @{@"winter" : winter,
+              @"summer" : summer,
+              @"fall" : fall,
+              @"spring" : spring}];
+}
 
 
 @end
