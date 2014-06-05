@@ -12,33 +12,34 @@ __block NSMutableArray *fruitsFiveApples = [NSMutableArray arrayWithArray:@[@"ap
 
 
 describe(@"ApplesSpec", ^{
-
-    it(@"Should have an Apple Picker Method", ^{
+    
+    describe(@"applePickerWithFruits Method", ^{
+        it(@"Should have an Apple Picker Method", ^{
+            
+            expect([FISAppDelegate class]).to.respondTo(@selector(applePickerWithFruits:));
+        });
+        it(@"Should return an Array of Strings from the Apple Picker Method", ^{
+            
+            NSArray *apples = [FISAppDelegate applePickerWithFruits:fruitsTwoApples];
+            
+            expect(apples).to.beKindOf([NSArray class]);
+            for (NSString *apple in apples)
+            {
+                expect(apple).to.beKindOf([NSString class]);
+            }
+        });
         
-        expect([FISAppDelegate class]).to.respondTo(@selector(applePickerWithFruits:));
+        it(@"should return exactly one Apple string for each apple string contained in the fruits array", ^{
+            
+            NSArray *noApples = [FISAppDelegate applePickerWithFruits:fruitsNoApples];
+            NSArray *twoApples = [FISAppDelegate applePickerWithFruits:fruitsTwoApples];
+            NSArray *fiveApples = [FISAppDelegate applePickerWithFruits:fruitsFiveApples];
+            
+            expect([noApples count]).to.equal(0);
+            expect([twoApples count]).to.equal(2);
+            expect([fiveApples count]).to.equal(5);
+        });
     });
-    it(@"Should return an Array of Strings from the Apple Picker Method", ^{
-
-        NSArray *apples = [FISAppDelegate applePickerWithFruits:fruitsTwoApples];
-        
-        expect(apples).to.beKindOf([NSArray class]);
-        for (NSString *apple in apples)
-        {
-            expect(apple).to.beKindOf([NSString class]);
-        }
-    });
-
-    it(@"should return exactly one Apple string for each apple string contained in the fruits array", ^{
-
-        NSArray *noApples = [FISAppDelegate applePickerWithFruits:fruitsNoApples];
-        NSArray *twoApples = [FISAppDelegate applePickerWithFruits:fruitsTwoApples];
-        NSArray *fiveApples = [FISAppDelegate applePickerWithFruits:fruitsFiveApples];
-        
-        expect([noApples count]).to.equal(0);
-        expect([twoApples count]).to.equal(2);
-        expect([fiveApples count]).to.equal(5);
-    });
- 
 });
 
 
