@@ -7,12 +7,12 @@
 
 ## Instructions
 
-In FISAppDelegate.m implement a class method that will pick the apples out of the fruits array.  
+In FISAppDelegate.m implement a class method that will pick the apples out of the fruits array.  First use a for loop to iterate over each object in the Array and test if the string in the array is equal to "apple".  Then improve your solution by using NSPredicate. (See the bottom of this README for an NSPredicate primer)   
 
 ```objc
 NSArray *fruits = @["apple", "orange", "apple"]
 
-[FISAppDelegate applePickerWithFruits:fruits] #=> ["apple", "apple"]
+[FISAppDelegate applePickerWithFruits:fruits]; // would return ["apple", "apple"]
 ```
 
 ### Skills: Arrays, Dictionaries, Iteration
@@ -71,5 +71,24 @@ ex:
 3. Write a method that adds a supply to Memorial Day.
 
 4. Write a method that adds a new holiday to any season with supplies.
+
+## NSPredicate
+
+Here is an example of using NSPredicate to search an array 
+
+```objc
+NSArray *teachers = @[@"Joe", @"Al", @"Chris", @"Al"]; 
+NSString *al = @"Al"; 
+NSPredicate *alPredicate = [NSPredicate predicateWithFormat:@"SELF == %@", al]; 
+
+NSArray *als = [teachers filteredArrayUsingPredicate:alPredicate]; 
+
+//als will be this array: @[@"Al", @"Al"]; 
+
+```
+
+For more on NSPredicate read the [Predicate Programming Guide](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Predicates/Articles/pUsing.html)
+
+
 
 

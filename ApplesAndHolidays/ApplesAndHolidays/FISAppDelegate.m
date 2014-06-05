@@ -30,8 +30,8 @@
 
 + (NSMutableArray *)applePickerWithFruits:(NSMutableArray *)fruits
 {
+    /*  Implementation with For loop
     NSMutableArray *apples = [NSMutableArray array];
-    
     for (NSString *fruit in fruits)
     {
         if ([fruit isEqualToString:@"apple"])
@@ -41,6 +41,15 @@
     }
     
     return apples;
+    
+     */
+    
+    //implementation with predicate
+    
+    NSPredicate *applePredicate = [NSPredicate predicateWithFormat:@"self == 'apple'"];
+    NSMutableArray *results = [NSMutableArray arrayWithArray:[fruits filteredArrayUsingPredicate:applePredicate]];
+    
+    return results;
 }
 
 + (NSString *)secondSupplyFourthOfJuly
