@@ -68,7 +68,7 @@ describe(@"HolidaysSpec", ^{
         expect(secondSupply).to.equal(@"BBQ");
     });
     
-    it(@"should have a class method that returns a copy of the holiday supplies mutable dictionary with an additional supply added to memorial day", ^{
+    it(@"should have a class method that returns a copy of the holiday supplies with an additional supply added to memorial day", ^{
         
         expect([FISAppDelegate class]).to.respondTo(@selector(addSupplyToMemorialDay:));
         
