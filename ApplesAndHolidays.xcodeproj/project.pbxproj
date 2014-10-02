@@ -34,7 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		096335E3418D480183A277AB /* Pods-ApplesAndHolidaysTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApplesAndHolidaysTests.xcconfig"; path = "Pods/Pods-ApplesAndHolidaysTests.xcconfig"; sourceTree = "<group>"; };
+		104752A6662439600D9F9C6C /* Pods-ApplesAndHolidaysTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApplesAndHolidaysTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApplesAndHolidaysTests/Pods-ApplesAndHolidaysTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4456FC931938FEA900A290A4 /* ApplesAndHolidays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApplesAndHolidays.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4456FC961938FEA900A290A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4456FC981938FEA900A290A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +53,7 @@
 		4456FCBB1938FEA900A290A4 /* ApplesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApplesTests.m; sourceTree = "<group>"; };
 		4456FCC51939556500A290A4 /* HolidaysTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HolidaysTests.m; sourceTree = "<group>"; };
 		5CA2F2A5D9D54D39883DDD7B /* libPods-ApplesAndHolidaysTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ApplesAndHolidaysTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEC01D893488BFB2E3849EF3 /* Pods-ApplesAndHolidaysTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApplesAndHolidaysTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ApplesAndHolidaysTests/Pods-ApplesAndHolidaysTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18B7BFE641F14C1631E20D62 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				104752A6662439600D9F9C6C /* Pods-ApplesAndHolidaysTests.debug.xcconfig */,
+				EEC01D893488BFB2E3849EF3 /* Pods-ApplesAndHolidaysTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		4456FC8A1938FEA900A290A4 = {
 			isa = PBXGroup;
 			children = (
@@ -87,7 +97,7 @@
 				4456FCB51938FEA900A290A4 /* ApplesAndHolidaysTests */,
 				4456FC951938FEA900A290A4 /* Frameworks */,
 				4456FC941938FEA900A290A4 /* Products */,
-				096335E3418D480183A277AB /* Pods-ApplesAndHolidaysTests.xcconfig */,
+				18B7BFE641F14C1631E20D62 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -259,7 +269,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-ApplesAndHolidaysTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ApplesAndHolidaysTests/Pods-ApplesAndHolidaysTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EEBDBD3FC48D46369F20CE75 /* Check Pods Manifest.lock */ = {
@@ -426,7 +436,7 @@
 		};
 		4456FCC31938FEA900A290A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 096335E3418D480183A277AB /* Pods-ApplesAndHolidaysTests.xcconfig */;
+			baseConfigurationReference = 104752A6662439600D9F9C6C /* Pods-ApplesAndHolidaysTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ApplesAndHolidays.app/ApplesAndHolidays";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -449,7 +459,7 @@
 		};
 		4456FCC41938FEA900A290A4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 096335E3418D480183A277AB /* Pods-ApplesAndHolidaysTests.xcconfig */;
+			baseConfigurationReference = EEC01D893488BFB2E3849EF3 /* Pods-ApplesAndHolidaysTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ApplesAndHolidays.app/ApplesAndHolidays";
 				FRAMEWORK_SEARCH_PATHS = (
