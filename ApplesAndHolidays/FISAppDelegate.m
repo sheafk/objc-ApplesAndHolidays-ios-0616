@@ -23,13 +23,13 @@
 + (NSMutableDictionary *)holidaySupplies
 {
     
-    NSMutableDictionary *winter = [NSMutableDictionary dictionaryWithDictionary:@{@"christmas" : [NSMutableArray arrayWithArray:@[@"Lights", @"Wreath"]], @"newYears" : [NSMutableArray arrayWithArray:@[@"Party Hats"]]}];
+    NSMutableDictionary *winter = [@{@"christmas" : [NSMutableArray arrayWithArray:@[@"Lights", @"Wreath"]], @"newYears" : [NSMutableArray arrayWithArray:@[@"Party Hats"]]} mutableCopy];
     
-    NSMutableDictionary *summer = [NSMutableDictionary dictionaryWithDictionary:@{@"fourthOfJuly" : [NSMutableArray arrayWithArray:@[@"Fireworks", @"BBQ"]]}];
+    NSMutableDictionary *summer = [@{@"fourthOfJuly" : [NSMutableArray arrayWithArray:@[@"Fireworks", @"BBQ"]]} mutableCopy];
+   
+    NSMutableDictionary *fall = [@{@"thanksgiving" : [NSMutableArray arrayWithArray:@[@"Turkey"]]} mutableCopy];
     
-    NSMutableDictionary *fall = [NSMutableDictionary dictionaryWithDictionary:@{@"thanksgiving" : [NSMutableArray arrayWithArray:@[@"Turkey"]]}];
-    
-    NSMutableDictionary *spring = [NSMutableDictionary dictionaryWithDictionary:@{@"memorialDay" : [NSMutableArray arrayWithArray:@[@"BBQ"]]}];
+    NSMutableDictionary *spring = [@{@"memorialDay" : [NSMutableArray arrayWithArray:@[@"BBQ"]]} mutableCopy];
     
     return [NSMutableDictionary dictionaryWithDictionary:
             @{@"winter" : winter,

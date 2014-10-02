@@ -89,6 +89,13 @@ NSArray *als = [teachers filteredArrayUsingPredicate:alPredicate];
 
 For more on NSPredicate read the [Predicate Programming Guide](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Predicates/Articles/pUsing.html)
 
+Additional note
 
+Literal implementations of objects are always immutable. There are no literal fo
+rms of mutable objects. A quick and easy way to create a mutable version of a li
+teral object however can be seen below. You'll see this used in the method `holidaySupplies`.
 
+```
+NSMutableDictionary *contactList = [{@"Joe Burgess":@"212-345-1111"},{@"Zach Drossman":@"973-403-9107"} mutableCopy];
+```
 
