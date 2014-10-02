@@ -19,6 +19,6 @@
 + (NSString *)secondSupplyFourthOfJuly; 
 + (NSMutableDictionary *)holidaySupplies;
 + (NSMutableDictionary *)addSupplyToMemorialDay:(NSString *)supply;
-
++ (NSMutableDictionary *)addHoliday:(NSString *)holiday toSeason:(NSString *)season withSupplies:(NSArray *)newHolidaySupplies;
 
 @end
