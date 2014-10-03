@@ -99,14 +99,15 @@ describe(@"HolidaysSpec", ^{
         });
     });
     
-   describe(@"addHolidayToSeasonWithSupplies", ^{
-            it (@"should have a class method that adds a holiday to any season; and also add a supply to that holiday", ^{
-                expect([FISAppDelegate class]).to.respondTo(@selector(addHoliday:toSeason:withSupplies:));
-            });
-       
-       NSMutableDictionary *newHolidaySupplies = [FISAppDelegate addHoliday:@"Channukah" toSeason:@"Winter" withSupplies:@[@"Dreidel"]];
-       expect(newHolidaySupplies[@"Winter"][@"Channukah"][0]).to.equal(@"Dreidel");
-   });
+    describe(@"addHolidayToSeasonWithSupplies", ^{
+        it (@"should have a class method that adds a holiday to any season; and also add a supply to that holiday", ^{
+            expect([FISAppDelegate class]).to.respondTo(@selector(addHoliday:toSeason:withSupplies:));
+        
+            NSMutableDictionary *newHolidaySupplies = [FISAppDelegate addHoliday:@"Channukah" toSeason:@"Winter" withSupplies:@[@"Dreidel"]];
+            expect(newHolidaySupplies[@"Winter"][@"Channukah"][0]).to.equal(@"Dreidel");
+        });
+    });
+    
 });
     
 
