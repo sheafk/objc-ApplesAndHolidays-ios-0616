@@ -82,9 +82,9 @@
 
 + (NSMutableDictionary *)addHoliday:(NSString *)holiday toSeason:(NSString *)season withSupplies:(NSArray *)newHolidaySupplies {
     
-    NSMutableDictionary *seasonDictionary = [[self class] holidaySupplies];
-    NSMutableArray *holidayDictionary = seasonDictionary[season];
-    [holidayDictionary addObjectsFromArray:newHolidaySupplies];
+    NSMutableDictionary *seasonDictionary = [self holidaySupplies];
+    seasonDictionary[season][holiday] = [NSMutableArray arrayWithArray:newHolidaySupplies];
+    
     return seasonDictionary;
 }
 
