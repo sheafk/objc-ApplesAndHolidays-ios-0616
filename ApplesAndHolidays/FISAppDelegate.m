@@ -10,8 +10,7 @@
 
 @implementation FISAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSMutableDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSMutableDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -20,23 +19,68 @@
     return YES;
 }
 
-+ (NSMutableDictionary *)holidaySupplies
-{
+/**
+ 
+ * Implement your methods here.
+ 
+ */
+
+// Apple picker methods
+
+- (NSArray *)pickApplesFromFruits:(NSArray *)fruits {
     
-    NSMutableDictionary *winter = [@{@"christmas" : [NSMutableArray arrayWithArray:@[@"Lights", @"Wreath"]], @"newYears" : [NSMutableArray arrayWithArray:@[@"Party Hats"]]} mutableCopy];
+    NSPredicate *applePredicate = [NSPredicate predicateWithFormat:@"self == 'apple'"];
+    NSArray *apples = [fruits filteredArrayUsingPredicate:applePredicate];
     
-    NSMutableDictionary *summer = [@{@"fourthOfJuly" : [NSMutableArray arrayWithArray:@[@"Fireworks", @"BBQ"]]} mutableCopy];
-   
-    NSMutableDictionary *fall = [@{@"thanksgiving" : [NSMutableArray arrayWithArray:@[@"Turkey"]]} mutableCopy];
-    
-    NSMutableDictionary *spring = [@{@"memorialDay" : [NSMutableArray arrayWithArray:@[@"BBQ"]]} mutableCopy];
-    
-    return [NSMutableDictionary dictionaryWithDictionary:
-            @{@"winter" : winter,
-              @"summer" : summer,
-              @"fall" : fall,
-              @"spring" : spring}];
+    return apples;
 }
 
+// Holiday supplies methods
 
+- (NSArray *)holidaysInSeason:(NSString *)season
+                   inDatabase:(NSDictionary *)database {
+    
+    return [database[season] allKeys];
+}
+
+- (NSArray *)suppliesInHoliday:(NSString *)holiday
+                      inSeason:(NSString *)season
+                    inDatabase:(NSDictionary *)database {
+    
+    return [NSArray arrayWithArray:database[season][holiday] ];
+}
+
+- (BOOL)holiday:(NSString* )holiday
+     isInSeason:(NSString *)season
+     inDatabase:(NSDictionary *)database {
+    
+    return [[database[season] allKeys] containsObject:holiday];
+}
+
+- (BOOL)supply:(NSString *)supply
+   isInHoliday:(NSString *)holiday
+      inSeason:(NSString *)season
+    inDatabase:(NSDictionary *)database {
+    
+    return [database[season][holiday] containsObject:supply];
+}
+
+- (NSDictionary *)addHoliday:(NSString *)holiday
+                    toSeason:(NSString *)season
+                  inDatabase:(NSDictionary *)database {
+    
+    database[season][holiday] = [ @[] mutableCopy];
+    
+    return database;
+}
+
+- (NSDictionary *)addSupply:(NSString *)supply
+                  toHoliday:(NSString *)holiday
+                   inSeason:(NSString *)season
+                 inDatabase:(NSDictionary *)database {
+    
+    [database[season][holiday] addObject:supply];
+    
+    return database;
+}
 @end

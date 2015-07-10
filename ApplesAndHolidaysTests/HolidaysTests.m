@@ -7,105 +7,204 @@
 SpecBegin(HolidaysTests)
 
 describe(@"HolidaysSpec", ^{
-    describe(@"holidaySupplies", ^{
-        it(@"should have a holidaySupplies class method", ^{
-            expect([FISAppDelegate class]).respondTo(@selector(holidaySupplies));
-        });
-        it(@"should return a mutable dictionary from the holidaySupplies class method", ^{
-            
-            NSMutableDictionary *holidaySupplies = [FISAppDelegate holidaySupplies];
-            expect(holidaySupplies).to.beKindOf([NSMutableDictionary class]);
-            
-            //Winter
-            expect(holidaySupplies[@"winter"]).to.beKindOf([NSMutableDictionary class]);
-            
-            //Winter -> Christmas
-            expect(holidaySupplies[@"winter"][@"christmas"]).to.beKindOf([NSMutableArray class]);
-            expect([holidaySupplies[@"winter"][@"christmas"] count]).to.equal(2);
-            expect(holidaySupplies[@"winter"][@"christmas"][0]).to.equal(@"Lights");
-            expect(holidaySupplies[@"winter"][@"christmas"][1]).to.equal(@"Wreath");
-            
-            //Winter -> New Years
-            expect(holidaySupplies[@"winter"][@"newYears"]).to.beKindOf([NSMutableArray class]);
-            expect([holidaySupplies[@"winter"][@"newYears"] count]).to.equal(1);
-            expect(holidaySupplies[@"winter"][@"newYears"][0]).to.equal(@"Party Hats");
-            
-            //Summer
-            expect(holidaySupplies[@"summer"]).to.beKindOf([NSMutableDictionary class]);
-            
-            //Summer -> Fourth of July
-            expect(holidaySupplies[@"summer"][@"fourthOfJuly"]).to.beKindOf([NSMutableArray class]);
-            expect([holidaySupplies[@"summer"][@"fourthOfJuly"] count]).to.equal(2);
-            expect(holidaySupplies[@"summer"][@"fourthOfJuly"][0]).to.equal(@"Fireworks");
-            expect(holidaySupplies[@"summer"][@"fourthOfJuly"][1]).to.equal(@"BBQ");
-            
-            //Fall
-            expect(holidaySupplies[@"fall"]).to.beKindOf([NSMutableDictionary class]);
-            
-            //Fall -> Thanksgiving
-            expect(holidaySupplies[@"fall"][@"thanksgiving"]).to.beKindOf([NSMutableArray class]);
-            expect([holidaySupplies[@"fall"][@"thanksgiving"] count]).to.equal(1);
-            expect(holidaySupplies[@"fall"][@"thanksgiving"][0]).to.equal(@"Turkey");
-            
-            //Spring
-            expect(holidaySupplies[@"spring"]).to.beKindOf([NSMutableDictionary class]);
-            
-            //Spring -> Memorial Day
-            expect(holidaySupplies[@"spring"][@"memorialDay"]).to.beKindOf([NSMutableArray class]);
-            expect([holidaySupplies[@"spring"][@"memorialDay"] count]).to.equal(1);
-            expect(holidaySupplies[@"spring"][@"memorialDay"][0]).to.equal(@"BBQ");
-            
-        });
-    });
     
-    describe(@"secondSupplyFourthOfJuly", ^{
-        it(@"should have a class method that returns the second supply on the fourth of July as a string", ^{
-            
-            expect([FISAppDelegate class]).to.respondTo(@selector(secondSupplyFourthOfJuly));
-            
-            NSString *secondSupply = [FISAppDelegate secondSupplyFourthOfJuly];
-            
-            expect(secondSupply).to.beKindOf([NSString class]);
-            expect(secondSupply).to.equal(@"BBQ");
-        });
-    });
+    __block FISAppDelegate *appDelegate;
+    __block NSDictionary *suppliesBySeasonAndHoliday;
     
-    describe(@"addSupplyToMemorialDay", ^{
-        it(@"should have a class method that returns a copy of the holiday supplies mutable dictionary with an additional supply added to memorial day", ^{
-            
-            expect([FISAppDelegate class]).to.respondTo(@selector(addSupplyToMemorialDay:));
-            
-            NSMutableDictionary *modifiedHolidaySupplies = [FISAppDelegate addSupplyToMemorialDay:@"Pool"];
-            
-            expect(modifiedHolidaySupplies).to.beKindOf([NSMutableDictionary class]);
-            expect([modifiedHolidaySupplies[@"spring"][@"memorialDay"] count]).to.equal(2);
-            expect(modifiedHolidaySupplies[@"spring"][@"memorialDay"][1]).to.equal(@"Pool");
-        });
-    });
-    
-    describe(@"addSupplyToWinterHoliday", ^{
-        it (@"should have a class method that adds a supply to a given winter holiday. If the holiday passed in doesn't exist the meethod should return the original Dictionary", ^{
-            
-            expect([FISAppDelegate class]).to.respondTo(@selector(addSupply:toWinterHoliday:));
-            
-            NSMutableDictionary *modifiedHolidaySupplies = [FISAppDelegate addSupply:@"Tree" toWinterHoliday:@"christmas"];
-            NSMutableDictionary *invalidHolidaySupplies = [FISAppDelegate addSupply:@"Chair" toWinterHoliday:@"fourthOfJuly"];
-            
-            expect(modifiedHolidaySupplies).to.beKindOf([NSMutableDictionary class]);
-            expect(modifiedHolidaySupplies[@"winter"][@"christmas"][2]).to.equal(@"Tree");
-            
-            expect(invalidHolidaySupplies).to.equal([FISAppDelegate holidaySupplies]);
-            
-        });
-    });
-    
-    describe(@"addHolidayToSeasonWithSupplies", ^{
-        it (@"should have a class method that adds a holiday to any season; and also add a supply to that holiday", ^{
-            expect([FISAppDelegate class]).to.respondTo(@selector(addHoliday:toSeason:withSupplies:));
+    beforeEach(^{
+        appDelegate = [[FISAppDelegate alloc] init];
         
-            NSMutableDictionary *newHolidaySupplies = [FISAppDelegate addHoliday:@"Channukah" toSeason:@"winter" withSupplies:@[@"Dreidel"]];
-            expect(newHolidaySupplies[@"winter"][@"Channukah"][0]).to.equal(@"Dreidel");
+        suppliesBySeasonAndHoliday =
+                  @{ @"Winter" : [@{ @"Christmas Day"    : [@[ @"plastic tree"   ,
+                                                               @"tinsel"         ,
+                                                               @"lights"         ,
+                                                               @"presents"       ,
+                                                               @"wreath"         ,
+                                                               @"mistletoe"      ,
+                                                               @"Christmas music"
+                                                              ] mutableCopy],
+                                     @"New Year's Day"   : [@[ @"party hats"     ,
+                                                               @"kazoos"         ,
+                                                               @"champagne"
+                                                              ] mutableCopy]
+                                    } mutableCopy],
+                     @"Spring" : [@{ @"Memorial Day"     : [@[ @"American flag"  ,
+                                                               @"memoirs"
+                                                              ] mutableCopy]
+                                    } mutableCopy],
+                     @"Summer" : [@{ @"Independence Day" : [@[ @"fireworks"      ,
+                                                               @"barbeque"       ,
+                                                               @"picnic blanket" ,
+                                                               @"sunscreen"
+                                                              ] mutableCopy],
+                                     @"Labor Day"        : [@[ @"white jeans"    ,
+                                                               @"shopping bag"
+                                                              ] mutableCopy]
+                                    } mutableCopy],
+                     @"Fall"   : [@{ @"Veteran's Day"    : [@[ @"barbeque"       ,
+                                                               @"American flag"
+                                                              ] mutableCopy],
+                                     @"Thanksgiving Day" : [@[ @"turkey"         ,
+                                                               @"gravy"          ,
+                                                               @"mashed potatoes",
+                                                               @"acorn squash"   ,
+                                                               @"cranberry sauce",
+                                                               @"napkins"
+                                                              ] mutableCopy]
+                                    } mutableCopy]
+                     };
+        
+        
+    });
+    
+    describe(@"1 holidaysInSeason:inDatabase:", ^{
+        it(@"returns an array with the correct holidays in the winter season", ^{
+            expect([appDelegate holidaysInSeason:@"Winter"
+                                      inDatabase:suppliesBySeasonAndHoliday].count).to.equal(2);
+            expect([appDelegate holidaysInSeason:@"Winter"
+                                      inDatabase:suppliesBySeasonAndHoliday]).to.contain(@"Christmas Day");
+            expect([appDelegate holidaysInSeason:@"Winter"
+                                      inDatabase:suppliesBySeasonAndHoliday]).to.contain(@"New Year's Day");
         });
+        
+        it(@"returns an array with the correct holidays in the summer season", ^{
+            expect([appDelegate holidaysInSeason:@"Summer"
+                                      inDatabase:suppliesBySeasonAndHoliday].count).to.equal(2);
+            expect([appDelegate holidaysInSeason:@"Summer"
+                                      inDatabase:suppliesBySeasonAndHoliday]).to.contain(@"Independence Day");
+            expect([appDelegate holidaysInSeason:@"Summer"
+                                      inDatabase:suppliesBySeasonAndHoliday]).to.contain(@"Labor Day");
+        });
+    });
+    
+    describe(@"2 suppliesInHoliday:inSeason:inDatabase:", ^{
+        it(@"returns an array of the correct supplies for New Year's Day in Winter ", ^{
+            NSMutableArray *newYearsSupplies = [@[ @"party hats",
+                                                   @"kazoos"    ,
+                                                   @"champagne"
+                                                   ] mutableCopy];
+            
+            expect([appDelegate suppliesInHoliday:@"New Year's Day"
+                                         inSeason:@"Winter"
+                                       inDatabase:suppliesBySeasonAndHoliday]).to.equal(newYearsSupplies);
+        });
+        
+        it(@"returns an array of the correct supplies for Independence Day in Summer ", ^{
+            NSMutableArray *independenceDaySupplies = [@[ @"fireworks"      ,
+                                                          @"barbeque"       ,
+                                                          @"picnic blanket" ,
+                                                          @"sunscreen"
+                                                          ] mutableCopy];
+            
+            expect([appDelegate suppliesInHoliday:@"Independence Day"
+                                         inSeason:@"Summer"
+                                       inDatabase:suppliesBySeasonAndHoliday]).to.equal(independenceDaySupplies);
+        });
+    });
+    
+    describe(@"3 holiday:isInSeason:inDatabase:", ^{
+        it(@"returns YES that Christmas Day is in Winter", ^{
+            expect([appDelegate holiday:@"Christmas Day"
+                             isInSeason:@"Winter"
+                             inDatabase:suppliesBySeasonAndHoliday]).to.beTruthy();
+        });
+        
+        it(@"returns YES that Labor Day is in Summer", ^{
+            expect([appDelegate holiday:@"Labor Day"
+                             isInSeason:@"Summer"
+                             inDatabase:suppliesBySeasonAndHoliday]).to.beTruthy();
+        });
+        
+        it(@"returns NO that Christmas Day is in Summer", ^{
+            expect([appDelegate holiday:@"Christmas Day"
+                             isInSeason:@"Summer"
+                             inDatabase:suppliesBySeasonAndHoliday]).to.beFalsy();
+        });
+    });
+    
+    describe(@"4 supply:isInHoliday:inSeason:inDatabase:", ^{
+        it(@"returns YES that barbeque is in Veteran's Day in Fall", ^{
+            expect([appDelegate supply:@"barbeque"
+                           isInHoliday:@"Veteran's Day"
+                              inSeason:@"Fall"
+                            inDatabase:suppliesBySeasonAndHoliday]).to.beTruthy();
+        });
+        
+        it(@"returns YES that sunscreen is in Independence Day in Summer", ^{
+            expect([appDelegate supply:@"sunscreen"
+                           isInHoliday:@"Independence Day"
+                              inSeason:@"Summer"
+                            inDatabase:suppliesBySeasonAndHoliday]).to.beTruthy();
+        });
+        
+        it(@"returns NO that sunscreen is not in New Year's Day in Winter", ^{
+            expect([appDelegate supply:@"sunscreen"
+                           isInHoliday:@"New Year's Day"
+                              inSeason:@"Winter"
+                            inDatabase:suppliesBySeasonAndHoliday]).to.beFalsy();
+        });
+
+    });
+
+    
+    describe(@"5 addHoliday:toSeason:inDatabase:", ^{
+        it (@"returns the database with President's Day added as a key to Winter", ^{
+            NSString *presidentsDay = @"President's Day";
+            NSString *winter = @"Winter";
+            NSDictionary *modifiedDatabase = [appDelegate addHoliday:presidentsDay
+                                                            toSeason:winter
+                                                          inDatabase:suppliesBySeasonAndHoliday];
+            
+            expect([modifiedDatabase[winter] allKeys]).to.contain(presidentsDay);
+        });
+        
+        it (@"returns the database with President's Day added as a key to Winter that points to the value of an empty NSMutableArray", ^{
+            NSString *presidentsDay = @"President's Day";
+            NSString *winter = @"Winter";
+            NSDictionary *modifiedDatabase = [appDelegate addHoliday:presidentsDay
+                                                            toSeason:winter
+                                                          inDatabase:suppliesBySeasonAndHoliday];
+            
+            expect(modifiedDatabase[winter][presidentsDay]).to.equal([ @[] mutableCopy]);
+        });
+        
+        it (@"returns the database with President's Day not added as a key to another season", ^{
+            NSString *presidentsDay = @"President's Day";
+            NSString *winter = @"Winter";
+            NSDictionary *modifiedDatabase = [appDelegate addHoliday:presidentsDay
+                                                            toSeason:winter
+                                                          inDatabase:suppliesBySeasonAndHoliday];
+            
+            expect([modifiedDatabase[@"Spring"] allKeys]).toNot.contain(presidentsDay);
+        });
+
+    });
+    
+    describe(@"6 addSupply:toHoliday:inSeason:inDatabase:", ^{
+        it (@"returns the database with sunscreen added to Veteran's Day in Fall", ^{
+            NSString *sunscreen = @"sunscreen";
+            NSString *veteransDay = @"Veteran's Day";
+            NSString *fall = @"Fall";
+            NSDictionary *modifiedDatabase = [appDelegate addSupply:sunscreen
+                                                          toHoliday:veteransDay
+                                                           inSeason:fall
+                                                         inDatabase:suppliesBySeasonAndHoliday];
+            
+            expect(modifiedDatabase[fall][veteransDay]).to.contain(sunscreen);
+        });
+        
+        it (@"returns the database with sunscreen not added to another holiday", ^{
+            NSString *sunscreen = @"sunscreen";
+            NSString *veteransDay = @"Veteran's Day";
+            NSString *fall = @"Fall";
+            NSDictionary *modifiedDatabase = [appDelegate addSupply:sunscreen
+                                                          toHoliday:veteransDay
+                                                           inSeason:fall
+                                                         inDatabase:suppliesBySeasonAndHoliday];
+            
+            expect(modifiedDatabase[fall][@"Thanksgiving Day"]).toNot.contain(sunscreen);
+        });
+
     });
     
 });
