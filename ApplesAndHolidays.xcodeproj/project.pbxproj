@@ -35,7 +35,7 @@
 
 /* Begin PBXFileReference section */
 		104752A6662439600D9F9C6C /* Pods-ApplesAndHolidaysTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApplesAndHolidaysTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApplesAndHolidaysTests/Pods-ApplesAndHolidaysTests.debug.xcconfig"; sourceTree = "<group>"; };
-		311D3BE719DD9908003F3716 /* FISAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FISAppDelegate.m; path = ApplesAndHolidays/FISAppDelegate.m; sourceTree = "<group>"; };
+		311D3BE719DD9908003F3716 /* FISAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISAppDelegate.m; sourceTree = "<group>"; };
 		4456FC931938FEA900A290A4 /* ApplesAndHolidays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApplesAndHolidays.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4456FC961938FEA900A290A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4456FC981938FEA900A290A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -125,8 +125,8 @@
 		4456FC9C1938FEA900A290A4 /* ApplesAndHolidays */ = {
 			isa = PBXGroup;
 			children = (
-				311D3BE719DD9908003F3716 /* FISAppDelegate.m */,
 				4456FCA51938FEA900A290A4 /* FISAppDelegate.h */,
+				311D3BE719DD9908003F3716 /* FISAppDelegate.m */,
 				4456FCA81938FEA900A290A4 /* Images.xcassets */,
 				4456FC9D1938FEA900A290A4 /* Supporting Files */,
 			);
