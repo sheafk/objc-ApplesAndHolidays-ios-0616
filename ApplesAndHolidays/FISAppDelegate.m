@@ -69,7 +69,7 @@
                     toSeason:(NSString *)season
                   inDatabase:(NSDictionary *)database {
     
-    database[season][holiday] = [ @[] mutableCopy];
+    database[season][holiday] = [[NSMutableArray alloc] init];
     
     return database;
 }

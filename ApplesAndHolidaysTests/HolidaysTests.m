@@ -60,7 +60,7 @@ describe(@"HolidaysSpec", ^{
     describe(@"1 holidaysInSeason:inDatabase:", ^{
         it(@"returns an array with the correct holidays in the winter season", ^{
             expect([appDelegate holidaysInSeason:@"Winter"
-                                      inDatabase:suppliesBySeasonAndHoliday].count).to.equal(2);
+                                      inDatabase:suppliesBySeasonAndHoliday]).to.haveCountOf(2);
             expect([appDelegate holidaysInSeason:@"Winter"
                                       inDatabase:suppliesBySeasonAndHoliday]).to.contain(@"Christmas Day");
             expect([appDelegate holidaysInSeason:@"Winter"
@@ -69,7 +69,7 @@ describe(@"HolidaysSpec", ^{
         
         it(@"returns an array with the correct holidays in the summer season", ^{
             expect([appDelegate holidaysInSeason:@"Summer"
-                                      inDatabase:suppliesBySeasonAndHoliday].count).to.equal(2);
+                                      inDatabase:suppliesBySeasonAndHoliday]).to.haveCountOf(2);
             expect([appDelegate holidaysInSeason:@"Summer"
                                       inDatabase:suppliesBySeasonAndHoliday]).to.contain(@"Independence Day");
             expect([appDelegate holidaysInSeason:@"Summer"
@@ -165,7 +165,7 @@ describe(@"HolidaysSpec", ^{
                                                             toSeason:winter
                                                           inDatabase:suppliesBySeasonAndHoliday];
             
-            expect(modifiedDatabase[winter][presidentsDay]).to.equal([ @[] mutableCopy]);
+            expect(modifiedDatabase[winter][presidentsDay]).to.haveCountOf(0);
         });
         
         it (@"returns the database with President's Day not added as a key to another season", ^{
