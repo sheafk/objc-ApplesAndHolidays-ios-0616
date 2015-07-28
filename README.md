@@ -38,6 +38,8 @@ Of load on load of apples coming in.*
 
 Write out the implementation body for the `pickApplesFromFruits:` method so that it returns an `NSArray` of all of the occurrences of the string `@"apple"` in the argument array `fruits`. Think about how you can filter the argument array using `NSPredicate`.
 
+**Hint:** *Use the* `self` *keypath when filtering an array of strings.*
+
 ## Holiday Supplies 
 
 1. Look at the `HolidayTests` file to review the structure of the `suppliesByHolidayAndSeason` dictionary at the top of the file. This dictionary is submitted to the `database` argument of the method calls across the test file, meaning that it's the collection you'll be working with. *You should be able to decipher that this is a nested collection: the first layer is a static dictionary of "season" keys; each season key is bound to a mutable dictionary of "holiday" keys; each holiday key is bound to mutable array of "supplies" relevant to that holiday.*
