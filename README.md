@@ -56,3 +56,5 @@ Write out the implementation body for the `pickApplesFromFruits:` method so that
   * `addHoliday:toSeason:inDatabase:` to create a new key-value pair in the submitted "season" key's sub-dictionary that uses the submitted "holiday" as the key and sets up an empty mutable array as its value.
   
   * `addSupply:toHoliday:inSeason:inDatabase:` to insert the submitted "supply" argument into the mutable array of the submitted "holiday" key in the sub-dictionary of the submitted "season" key.
+
+<a href='https://learn.co/lessons/objc-ApplesAndHolidays' data-visibility='hidden'>View this lesson on Learn.co</a>
